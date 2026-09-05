@@ -7,8 +7,8 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; background: #fdf8f5; color: #333; }
-.header { position: relative; }
-.header img { width: 100%; height: auto; display: block; }
+.header { position: relative; width: 100%; height: 280px; overflow: hidden; background: #eee; }
+.header img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .menu-btn { position: absolute; top: 25px; left: 25px; background: none; border: none; cursor: pointer; z-index: 100; }
 .menu-btn div { width: 30px; height: 4px; background: #000; margin: 6px 0; border-radius: 2px; }
 .botoes-topo { position: absolute; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 100; }
@@ -74,7 +74,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .btn-secundario { background: #ccc; color: #333; }
 .btn-qtd { width:28px;height:28px;border:1px solid #6b3e26;border-radius:6px;background:#fff;cursor:pointer;font-weight:bold;color:#6b3e26; }
 .btn-qtd:hover { background:#6b3e26; color:#fff; }
-@media (max-width: 600px) {.page h2 { font-size: 24px; } }
+@media (max-width: 600px) {.header { height: 200px; }.page h2 { font-size: 24px; } }
 </style>
 </head>
 <body>
@@ -85,7 +85,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
   <a href="https://wa.me/5551995702188?text=Ol%C3%A1%2C%20Vim%20pelo%20site%2C%20Gostaria%20de%20um%20pedido%20personalizado%21" target="_blank">Pedido Personalizado</a>
 </div>
 <div class="header">
-  <img src="atelie.jpg" alt="Ateliê Oliveira">
+  <img id="img-banner" src="atelie.jpg" alt="Ateliê Oliveira">
   <button class="menu-btn" onclick="toggleMenu()"><div></div><div></div><div></div></button>
   <div class="botoes-topo">
     <a href="https://wa.me/5551995702188?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20desejo%20de%20ser%20atendido%28a%29%20por%20aqui." target="_blank" class="btn-icone btn-icone-whatsapp" title="WhatsApp">
@@ -166,21 +166,28 @@ function criarPaginaCategoria(categoria) {
   return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${categoria.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
 }
 function gerarMenuECategorias(dados) {
-  todasCategorias = [...new Set(dados.map(p => p['Categoria']).filter(c => c))];
+  const dadosSemBanner = dados.filter(p => p['Categoria']?.toLowerCase()!== 'banner');
+  todasCategorias = [...new Set(dadosSemBanner.map(p => p['Categoria']).filter(c => c))];
   document.getElementById('menu-itens').innerHTML = `<a href="#" onclick="showPage('home')">Início</a>` + todasCategorias.map(cat => `<a href="#" onclick="showPage('${cat.toLowerCase().replace(/\s+/g, '-')}')">${cat}</a>`).join('');
   document.getElementById('paginas-dinamicas').innerHTML = todasCategorias.map(cat => criarPaginaCategoria(cat)).join('');
 }
 function preencherProdutos(dados) {
-  const prontaEntrega = dados.filter(p => p['Categoria']?.toLowerCase() === 'pronta entrega');
+  const dadosSemBanner = dados.filter(p => p['Categoria']?.toLowerCase()!== 'banner');
+  const prontaEntrega = dadosSemBanner.filter(p => p['Categoria']?.toLowerCase() === 'pronta entrega');
   const divHome = document.getElementById('catalogo-home');
   if(prontaEntrega.length > 0) { divHome.innerHTML = prontaEntrega.map(p => criarCard(p)).join(''); }
   else { divHome.innerHTML = `<div class="aviso-vazio"><p>No momento não temos produtos a pronta entrega, Clique no botão e faça sua encomenda!</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-encomenda">Encomendas</a></div>`; }
   todasCategorias.forEach(cat => {
     const id = cat.toLowerCase().replace(/\s+/g, '-');
-    const produtosDaCat = dados.filter(p => p['Categoria']?.toLowerCase() === cat.toLowerCase());
+    const produtosDaCat = dadosSemBanner.filter(p => p['Categoria']?.toLowerCase() === cat.toLowerCase());
     const divCat = document.getElementById(`catalogo-${id}`);
     if(divCat) { divCat.innerHTML = produtosDaCat.length > 0? produtosDaCat.map(p => criarCard(p)).join('') : `<p style="text-align:center; padding:20px;">Nenhum produto em ${cat}</p>`; }
   });
+  const itemBanner = dados.find(p => p['Categoria']?.toLowerCase() === 'banner');
+  if(itemBanner && itemBanner['Link da imagem']) {
+    const imgBanner = converterLinkDrive(itemBanner['Link da imagem']);
+    if(imgBanner) document.getElementById('img-banner').src = imgBanner;
+  }
 }
 function adicionarAoCarrinho(nome, preco) {
   const itemExistente = carrinho.find(item => item.nome === nome);
