@@ -7,8 +7,9 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; background: #fdf8f5; color: #333; }
-.header { position: relative; width: 100%; height: 280px; overflow: hidden; background: #eee; }
-.header img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+/* HEADER CORRIGIDO - TOPINHO PEQUENO QUE NAO CORTA */
+.header { position: relative; width: 100%; height: auto; max-height: 380px; overflow: hidden; background: #fdf8f5; display: flex; justify-content: center; align-items: center; }
+.header img { width: 100%; height: auto; max-height: 380px; object-fit: contain; object-position: center; display: block; }
 .menu-btn { position: absolute; top: 25px; left: 25px; background: none; border: none; cursor: pointer; z-index: 100; }
 .menu-btn div { width: 30px; height: 4px; background: #000; margin: 6px 0; border-radius: 2px; }
 .botoes-topo { position: absolute; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 100; }
@@ -74,7 +75,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .btn-secundario { background: #ccc; color: #333; }
 .btn-qtd { width:28px;height:28px;border:1px solid #6b3e26;border-radius:6px;background:#fff;cursor:pointer;font-weight:bold;color:#6b3e26; }
 .btn-qtd:hover { background:#6b3e26; color:#fff; }
-@media (max-width: 600px) {.header { height: 200px; }.page h2 { font-size: 24px; } }
+@media (max-width: 600px) {.header { height: auto; max-height: 220px; }.header img { max-height: 220px; }.page h2 { font-size: 24px; } }
 </style>
 </head>
 <body>
