@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ateliê Oliveira - Cidreira</title>
 <style>
-- { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; background: #fdf8f5; color: #333; }
-.header { position: relative; width: 100%; min-height: 120px; background: #fdf8f5; overflow: hidden; }
+/* BANNER 100% RESPONSIVO - PREENCHE LARGURA TODA */
+.header { position: relative; width: 100%; height: auto; overflow: hidden; background: #fdf8f5; }
 .header img { width: 100%; height: auto; display: block; }
 .menu-btn { position: absolute; top: 25px; left: 25px; background: none; border: none; cursor: pointer; z-index: 100; }
 .menu-btn div { width: 30px; height: 4px; background: #000; margin: 6px 0; border-radius: 2px; }
@@ -62,7 +63,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .total-geral { text-align: right; font-size: 20px; font-weight: bold; color: #2a9d8f; margin: 15px 0; }
 .form-group { margin-bottom: 15px; }
 .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #6b3e26; font-size: 14px; }
-.form-group {{IE_0}}http://label.req{{/IE_0}} { color: #e63946; }
+.form-group label.req { color: #e63946; }
 .form-group input,.form-group textarea { width: 100%; padding: 10px; border: 2px solid #f5e9da; border-radius: 8px; font-size: 15px; }
 .form-group input:focus,.form-group textarea:focus { outline: none; border-color: #6b3e26; }
 .aviso-entrega { background: #fff3cd; border: 2px dashed #6b3e26; border-radius: 8px; padding: 12px; text-align: center; font-weight: 700; color: #6b3e26; font-size: 15px; }
@@ -82,13 +83,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
   <button class="close-btn" onclick="toggleMenu()">×</button>
   <div id="menu-itens"></div>
   <a href="#" onclick="showPage('sobre')">Sobre Nós</a>
-  <a href="{{IE_1}}https://wa.me/5551995702188?text=Ol%C3%A1%2C%20Vim%20pelo%20site%2C%20Gostaria%20de%20um%20pedido%20personalizado%21{{/IE_1}}" target="_blank">Pedido Personalizado</a>
+  <a href="https://wa.me/5551995702188?text=Ol%C3%A1%2C%20Vim%20pelo%20site%2C%20Gostaria%20de%20um%20pedido%20personalizado%21" target="_blank">Pedido Personalizado</a>
 </div>
 <div class="header">
   <img id="img-banner" src="atelie.jpg" alt="Ateliê Oliveira">
   <button class="menu-btn" onclick="toggleMenu()"><div></div><div></div><div></div></button>
   <div class="botoes-topo">
-    <a href="{{IE_2}}https://wa.me/5551995702188?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20desejo%20de%20ser%20atendido%28a%29%20por%20aqui{{/IE_2}}." target="_blank" class="btn-icone btn-icone-whatsapp" title="WhatsApp">
+    <a href="https://wa.me/5551995702188?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20desejo%20de%20ser%20atendido%28a%29%20por%20aqui." target="_blank" class="btn-icone btn-icone-whatsapp" title="WhatsApp">
       <svg width="22" height="22" viewBox="0 0 32 32" fill="white"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.666.736 5.162 2.015 7.29L2 30l6.89-1.806A14.005 14.005 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.714c-2.274 0-4.474-.61-6.41-1.765l-.46-.275-4.086 1.07 1.093-3.975-.3-.484A11.432 11.432 0 0 1 4.286 16c0-6.45 5.264-11.714 11.714-11.714S27.714 9.55 27.714 16 22.45 27.714 16 27.714zm6.5-8.688c-.356-.178-2.1-1.036-2.425-1.154-.325-.118-.562-.178-.8.178-.237.356-.92 1.154-1.128 1.39-.208.237-.416.267-.772.089-.356-.178-1.5-.553-2.858-1.764-1.057-.942-1.77-2.107-1.978-2.463-.208-.356-.022-.55.156-.727.16-.16.356-.416.534-.623.178-.208.237-.356.356-.593.118-.237.06-.444-.03-.623-.09-.178-.8-1.926-1.095-2.64-.288-.692-.58-.597-.8-.608-.208-.01-.447-.01-.687-.01-.237 0-.623.089-.95.444-.325.356-1.243 1.215-1.243 2.965s1.273 3.44 1.45 3.68c.178.237 2.506 3.826 6.07 5.37.85.367 1.513.587 2.03.75.853.27 1.63.232 2.244.14.685-.102 2.1-.858 2.396-1.687.296-.828.296-1.538.207-1.687-.09-.148-.325-.237-.68-.415z"/></svg>
     </a>
   </div>
@@ -110,48 +111,48 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
     <p><b>Ateliê Oliveira — onde o amor e a arte atravessam gerações. ✨</b></p>
   </div>
 </div>
-<div class="rodape">Desenvolvido por <a href="{{IE_3}}https://wa.me/5551985108885{{/IE_3}}" target="_blank">Edmilson Bittencourt</a></div>
+<div class="rodape">Desenvolvido por <a href="https://wa.me/5551985108885" target="_blank">Edmilson Bittencourt</a></div>
 <button class="btn-carrinho-flutuante" id="btn-carrinho" onclick="abrirCarrinho()"><span>🛒</span><div class="badge-qtd" id="badge-qtd">0</div></button>
 <div class="popup-overlay" id="popup-overlay" onclick="fecharPopup()"><div class="popup" onclick="event.stopPropagation()"><button class="popup-close" onclick="fecharPopup()">×</button><div id="conteudo-popup"></div></div></div>
 <script>
-const SHEET_CSV_URL = "{{IE_4}}https://docs.google.com/spreadsheets/d/e/2PACX-1vTFGAWC1Fqsq0xYLdolt-yst_tjcVl9M24GVg5KoYw3xIpJHcTLBYlcBo1P166Bur5nKxmMSH47scMS/pub?output=csv{{/IE_4}}";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFGAWC1Fqsq0xYLdolt-yst_tjcVl9M24GVg5KoYw3xIpJHcTLBYlcBo1P166Bur5nKxmMSH47scMS/pub?output=csv";
 const NUMERO_WHATSAPP = "5551995702188";
 let todasCategorias = [];
 let carrinho = [];
 let primeiraVezAdicionando = true;
 function parseCSV(text) {
   const rows = []; let row = [], cell = '', inQuotes = false;
-  for (let i = 0; i < {{IE_5}}http://text.length{{/IE_5}}; i++) {
-    const char = text, next = text[i+1];
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i], next = text[i+1];
     if (char === '"') { if (inQuotes && next === '"') { cell += '"'; i++; } else { inQuotes =!inQuotes; } }
-    else if (char === ',' &&!inQuotes) { {{IE_6}}http://row.push{{/IE_6}}(cell); cell = ''; }
-    else if ((char === '\n' || char === '\r') &&!inQuotes) { if (cell!== '' || {{IE_7}}http://row.length{{/IE_7}} > 0) { {{IE_8}}http://row.push{{/IE_8}}(cell); {{IE_9}}http://rows.push{{/IE_9}}(row); row = []; cell = ''; } if (char === '\r' && next === '\n') i++; }
+    else if (char === ',' &&!inQuotes) { row.push(cell); cell = ''; }
+    else if ((char === '\n' || char === '\r') &&!inQuotes) { if (cell!== '' || row.length > 0) { row.push(cell); rows.push(row); row = []; cell = ''; } if (char === '\r' && next === '\n') i++; }
     else { cell += char; }
   }
-  if (cell!== '' || {{IE_10}}http://row.length{{/IE_10}} > 0) { {{IE_11}}http://row.push{{/IE_11}}(cell); {{IE_12}}http://rows.push{{/IE_12}}(row); }
-  const headers = rows;
-  return {{IE_13}}http://rows.slice{{/IE_13}}(1).map(r => {{IE_14}}http://Object.fromEntries{{/IE_14}}(headers.map((h, i) => [h.trim(), r?.trim() || ''])));
+  if (cell!== '' || row.length > 0) { row.push(cell); rows.push(row); }
+  const headers = rows[0];
+  return rows.slice(1).map(r => Object.fromEntries(headers.map((h, i) => [h.trim(), r[i]?.trim() || ''])));
 }
 function converterLinkDrive(link) {
   if(!link) return "";
-  link = {{IE_15}}http://link.replace{{/IE_15}}(/"/g, '').trim();
-  const match = {{IE_16}}http://link.match{{/IE_16}}(/\/d\/([a-zA-Z0-9-_]+)/);
-  if (match && match) return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1920`;
+  link = link.replace(/"/g, '').trim();
+  const match = link.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  if (match && match[1]) return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1920`;
   return link;
 }
 function formatarPreco(valor) {
   if(!valor) return "0,00";
-  valor = {{IE_17}}http://valor.replace{{/IE_17}}(/[^0-9.,]/g, '');
-  if(valor.includes('.') && {{IE_18}}http://valor.includes{{/IE_18}}(',')) { valor = {{IE_19}}http://valor.replace{{/IE_19}}(/\./g, '').replace(',', '.'); }
-  else if(valor.includes(',')) { valor = {{IE_20}}http://valor.replace{{/IE_20}}(',', '.'); }
+  valor = valor.replace(/[^0-9.,]/g, '');
+  if(valor.includes('.') && valor.includes(',')) { valor = valor.replace(/\./g, '').replace(',', '.'); }
+  else if(valor.includes(',')) { valor = valor.replace(',', '.'); }
   const num = parseFloat(valor);
   if(isNaN(num)) return "0,00";
-  return {{IE_21}}http://num.toLocaleString{{/IE_21}}('pt-BR', {minimumFractionDigits: 2});
+  return num.toLocaleString('pt-BR', {minimumFractionDigits: 2});
 }
 function precoParaNum(valor) {
-  valor = {{IE_22}}http://valor.replace{{/IE_22}}(/[^0-9.,]/g, '');
-  if(valor.includes('.') && {{IE_23}}http://valor.includes{{/IE_23}}(',')) { valor = {{IE_24}}http://valor.replace{{/IE_24}}(/\./g, '').replace(',', '.'); }
-  else if(valor.includes(',')) { valor = {{IE_25}}http://valor.replace{{/IE_25}}(',', '.'); }
+  valor = valor.replace(/[^0-9.,]/g, '');
+  if(valor.includes('.') && valor.includes(',')) { valor = valor.replace(/\./g, '').replace(',', '.'); }
+  else if(valor.includes(',')) { valor = valor.replace(',', '.'); }
   return parseFloat(valor) || 0;
 }
 function criarCard(produto) {
@@ -162,107 +163,108 @@ function criarCard(produto) {
   return `<div class="card-wrapper"><div class="card" onclick="this.classList.toggle('flipped')"><div class="card-face card-front"><div class="img-container"><img src="${img}" alt="${produto['Nome']}" onerror="this.src='https://via.placeholder.com/260x220?text=Sem+Imagem'"></div><div class="info"><h3>${produto['Nome']}</h3><p class="preco" data-preco="${precoNum}">R$ ${preco}</p><button class="btn-pedir" onclick="event.stopPropagation(); adicionarAoCarrinho('${produto['Nome'].replace(/'/g, "\\'")}', ${precoNum})">Adicionar ao Carrinho</button></div></div><div class="card-face card-back"><h3>Descrição</h3><div class="descricao">${descricao}</div><p class="dica">Toque novamente para voltar</p></div></div></div>`;
 }
 function criarPaginaCategoria(categoria) {
-  const id = {{IE_26}}http://categoria.toLowerCase{{/IE_26}}().replace(/\s+/g, '-');
+  const id = categoria.toLowerCase().replace(/\s+/g, '-');
   return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${categoria.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
 }
 function gerarMenuECategorias(dados) {
-  const dadosSemBanner = {{IE_27}}http://dados.filter{{/IE_27}}(p => p['Categoria']?.toLowerCase()!== 'banner');
+  const dadosSemBanner = dados.filter(p => p['Categoria']?.toLowerCase()!== 'banner');
   todasCategorias = [...new Set(dadosSemBanner.map(p => p['Categoria']).filter(c => c))];
-  {{IE_28}}http://document.getElementById{{/IE_28}}('menu-itens').innerHTML = `<a href="#" onclick="showPage('home')">Início</a>` + {{IE_29}}http://todasCategorias.map{{/IE_29}}(cat => `<a href="#" onclick="showPage('${cat.toLowerCase().replace(/\s+/g, '-')}')">${cat}</a>`).join('');
-  {{IE_30}}http://document.getElementById{{/IE_30}}('paginas-dinamicas').innerHTML = {{IE_31}}http://todasCategorias.map{{/IE_31}}(cat => criarPaginaCategoria(cat)).join('');
+  document.getElementById('menu-itens').innerHTML = `<a href="#" onclick="showPage('home')">Início</a>` + todasCategorias.map(cat => `<a href="#" onclick="showPage('${cat.toLowerCase().replace(/\s+/g, '-')}')">${cat}</a>`).join('');
+  document.getElementById('paginas-dinamicas').innerHTML = todasCategorias.map(cat => criarPaginaCategoria(cat)).join('');
 }
 function preencherProdutos(dados) {
-  const dadosSemBanner = {{IE_32}}http://dados.filter{{/IE_32}}(p => p['Categoria']?.toLowerCase()!== 'banner');
-  const prontaEntrega = {{IE_33}}http://dadosSemBanner.filter{{/IE_33}}(p => p['Categoria']?.toLowerCase() === 'pronta entrega');
-  const divHome = {{IE_34}}http://document.getElementById{{/IE_34}}('catalogo-home');
-  if(prontaEntrega.length > 0) { {{IE_35}}http://divHome.innerHTML{{/IE_35}} = {{IE_36}}http://prontaEntrega.map{{/IE_36}}(p => criarCard(p)).join(''); }
-  else { {{IE_37}}http://divHome.innerHTML{{/IE_37}} = `<div class="aviso-vazio"><p>No momento não temos produtos a pronta entrega, Clique no botão e faça sua encomenda!</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-encomenda">Encomendas</a></div>`; }
-  {{IE_38}}http://todasCategorias.forEach{{/IE_38}}(cat => {
-    const id = {{IE_39}}http://cat.toLowerCase{{/IE_39}}().replace(/\s+/g, '-');
-    const produtosDaCat = {{IE_40}}http://dadosSemBanner.filter{{/IE_40}}(p => p['Categoria']?.toLowerCase() === {{IE_41}}http://cat.toLowerCase{{/IE_41}}());
-    const divCat = {{IE_42}}http://document.getElementById{{/IE_42}}(`catalogo-${id}`);
-    if(divCat) { {{IE_43}}http://divCat.innerHTML{{/IE_43}} = {{IE_44}}http://produtosDaCat.length{{/IE_44}} > 0? {{IE_45}}http://produtosDaCat.map{{/IE_45}}(p => criarCard(p)).join('') : `<p style="text-align:center; padding:20px;">Nenhum produto em ${cat}</p>`; }
+  const dadosSemBanner = dados.filter(p => p['Categoria']?.toLowerCase()!== 'banner');
+  const prontaEntrega = dadosSemBanner.filter(p => p['Categoria']?.toLowerCase() === 'pronta entrega');
+  const divHome = document.getElementById('catalogo-home');
+  if(prontaEntrega.length > 0) { divHome.innerHTML = prontaEntrega.map(p => criarCard(p)).join(''); }
+  else { divHome.innerHTML = `<div class="aviso-vazio"><p>No momento não temos produtos a pronta entrega, Clique no botão e faça sua encomenda!</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-encomenda">Encomendas</a></div>`; }
+  todasCategorias.forEach(cat => {
+    const id = cat.toLowerCase().replace(/\s+/g, '-');
+    const produtosDaCat = dadosSemBanner.filter(p => p['Categoria']?.toLowerCase() === cat.toLowerCase());
+    const divCat = document.getElementById(`catalogo-${id}`);
+    if(divCat) { divCat.innerHTML = produtosDaCat.length > 0? produtosDaCat.map(p => criarCard(p)).join('') : `<p style="text-align:center; padding:20px;">Nenhum produto em ${cat}</p>`; }
   });
-  const itemBanner = {{IE_46}}http://dados.find{{/IE_46}}(p => p['Categoria']?.toLowerCase() === 'banner');
+  // LÓGICA DO BANNER PELA PLANILHA
+  const itemBanner = dados.find(p => p['Categoria']?.toLowerCase() === 'banner');
   if(itemBanner && itemBanner['Link da imagem']) {
     const imgBanner = converterLinkDrive(itemBanner['Link da imagem']);
-    if(imgBanner) {{IE_47}}http://document.getElementById{{/IE_47}}('img-banner').src = imgBanner;
+    if(imgBanner) document.getElementById('img-banner').src = imgBanner;
   }
 }
 function adicionarAoCarrinho(nome, preco) {
-  const itemExistente = {{IE_48}}http://carrinho.find{{/IE_48}}(item => {{IE_49}}http://item.nome{{/IE_49}} === nome);
-  if(itemExistente) { {{IE_50}}http://itemExistente.qtd{{/IE_50}}++; } else { {{IE_51}}http://carrinho.push{{/IE_51}}({ nome, preco, qtd: 1 }); }
+  const itemExistente = carrinho.find(item => item.nome === nome);
+  if(itemExistente) { itemExistente.qtd++; } else { carrinho.push({ nome, preco, qtd: 1 }); }
   atualizarBadge();
   if(primeiraVezAdicionando) { abrirPopupAdicionado(nome); primeiraVezAdicionando = false; }
 }
 function alterarQtd(index, delta) {
-  {{IE_52}}http://carrinho.qtd{{/IE_52}} += delta;
-  if(carrinho.qtd <= 0) { {{IE_53}}http://carrinho.splice{{/IE_53}}(index, 1); if(carrinho.length === 0) { fecharPopup(); return; } }
+  carrinho[index].qtd += delta;
+  if(carrinho[index].qtd <= 0) { carrinho.splice(index, 1); if(carrinho.length === 0) { fecharPopup(); return; } }
   atualizarBadge(); abrirCarrinho();
 }
 function atualizarBadge() {
-  const totalItens = {{IE_54}}http://carrinho.reduce{{/IE_54}}((soma, item) => soma + {{IE_55}}http://item.qtd{{/IE_55}}, 0);
-  const badge = {{IE_56}}http://document.getElementById{{/IE_56}}('badge-qtd');
-  {{IE_57}}http://badge.innerText{{/IE_57}} = totalItens;
-  {{IE_58}}http://badge.style.display{{/IE_58}} = totalItens > 0? 'flex' : 'none';
+  const totalItens = carrinho.reduce((soma, item) => soma + item.qtd, 0);
+  const badge = document.getElementById('badge-qtd');
+  badge.innerText = totalItens;
+  badge.style.display = totalItens > 0? 'flex' : 'none';
 }
 function abrirPopupAdicionado(nome) {
-  {{IE_59}}http://document.getElementById{{/IE_59}}('conteudo-popup').innerHTML = `<h3 style="text-align:center; color:#6b3e26; margin-bottom:20px;">Produto Adicionado!</h3><p style="text-align:center; margin-bottom:20px;"><b>${nome}</b> foi adicionado ao carrinho.</p><div class="btn-botoes"><button class="btn-azul btn-secundario" onclick="fecharPopup()">Continuar Comprando</button><button class="btn-azul" onclick="abrirCarrinho()">Ver Carrinho</button></div>`;
-  {{IE_60}}http://document.getElementById{{/IE_60}}('popup-overlay').classList.add('active');
+  document.getElementById('conteudo-popup').innerHTML = `<h3 style="text-align:center; color:#6b3e26; margin-bottom:20px;">Produto Adicionado!</h3><p style="text-align:center; margin-bottom:20px;"><b>${nome}</b> foi adicionado ao carrinho.</p><div class="btn-botoes"><button class="btn-azul btn-secundario" onclick="fecharPopup()">Continuar Comprando</button><button class="btn-azul" onclick="abrirCarrinho()">Ver Carrinho</button></div>`;
+  document.getElementById('popup-overlay').classList.add('active');
 }
 function abrirCarrinho() {
   if(carrinho.length === 0) { alert("Seu carrinho está vazio!"); return; }
   let htmlItens = `<div class="popup-header">🛒 Seu Carrinho 🛒</div><div class="lista-carrinho">`;
   let totalGeral = 0;
-  {{IE_61}}http://carrinho.forEach{{/IE_61}}((item, index) => {
-    const subtotal = {{IE_62}}http://item.preco{{/IE_62}} _ {{IE_63}}http://item.qtd{{/IE_63}}; totalGeral += subtotal;
+  carrinho.forEach((item, index) => {
+    const subtotal = item.preco * item.qtd; totalGeral += subtotal;
     htmlItens += `<div class="item-carrinho"><span style="font-weight:600;">${item.nome}</span><div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;"><div style="display:flex; align-items:center; gap:8px;"><button onclick="alterarQtd(${index}, -1)" class="btn-qtd">-</button><span style="min-width:20px;text-align:center;font-weight:bold;">${item.qtd}</span><button onclick="alterarQtd(${index}, 1)" class="btn-qtd">+</button></div><span style="color:#2a9d8f;font-weight:bold;">R$ ${subtotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span></div></div>`;
   });
   htmlItens += `</div><div class="total-geral">Total: R$ ${totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>`;
-  htmlItens += `<form id="form-pedido"><div class="form-group"><label>Nome Completo <span class="req">_</span></label><input type="text" id="nome" required></div><div class="form-group"><label>Telefone <span class="req">_</span></label><input type="tel" id="telefone" required></div><div class="aviso-entrega">📍 Local de entrega a combinar!</div><div class="form-group"><label>Forma de Pagamento <span class="req">_</span></label><div class="pagamento-options"><label><input type="radio" name="pagamento" value="Pix" required> Pix</label><label><input type="radio" name="pagamento" value="Dinheiro"> Dinheiro</label></div></div><div class="form-group"><label>Observação</label><textarea id="obs" rows="2"></textarea></div><button type="submit" class="btn-azul">Enviar Pedido no WhatsApp</button></form>`;
-  {{IE_64}}http://document.getElementById{{/IE_64}}('conteudo-popup').innerHTML = htmlItens;
-  {{IE_65}}http://document.getElementById{{/IE_65}}('popup-overlay').classList.add('active');
-  {{IE_66}}http://document.getElementById{{/IE_66}}('form-pedido').addEventListener('submit', enviarPedido);
+  htmlItens += `<form id="form-pedido"><div class="form-group"><label>Nome Completo <span class="req">*</span></label><input type="text" id="nome" required></div><div class="form-group"><label>Telefone <span class="req">*</span></label><input type="tel" id="telefone" required></div><div class="aviso-entrega">📍 Local de entrega a combinar!</div><div class="form-group"><label>Forma de Pagamento <span class="req">*</span></label><div class="pagamento-options"><label><input type="radio" name="pagamento" value="Pix" required> Pix</label><label><input type="radio" name="pagamento" value="Dinheiro"> Dinheiro</label></div></div><div class="form-group"><label>Observação</label><textarea id="obs" rows="2"></textarea></div><button type="submit" class="btn-azul">Enviar Pedido no WhatsApp</button></form>`;
+  document.getElementById('conteudo-popup').innerHTML = htmlItens;
+  document.getElementById('popup-overlay').classList.add('active');
+  document.getElementById('form-pedido').addEventListener('submit', enviarPedido);
 }
 function enviarPedido(e) {
-  {{IE_67}}http://e.preventDefault{{/IE_67}}();
-  const nome = {{IE_68}}http://document.getElementById{{/IE_68}}('nome').value;
-  const telefone = {{IE_69}}http://document.getElementById{{/IE_69}}('telefone').value;
-  const pagamento = {{IE_70}}http://document.querySelector{{/IE_70}}('input[name="pagamento"]:checked').value;
-  const obs = {{IE_71}}http://document.getElementById{{/IE_71}}('obs').value;
+  e.preventDefault();
+  const nome = document.getElementById('nome').value;
+  const telefone = document.getElementById('telefone').value;
+  const pagamento = document.querySelector('input[name="pagamento"]:checked').value;
+  const obs = document.getElementById('obs').value;
   let totalGeral = 0; let listaProdutos = '';
-  {{IE_72}}http://carrinho.forEach{{/IE_72}}((item, index) => {
-    const subtotal = {{IE_73}}http://item.preco{{/IE_73}} * {{IE_74}}http://item.qtd{{/IE_74}}; totalGeral += subtotal;
+  carrinho.forEach((item, index) => {
+    const subtotal = item.preco * item.qtd; totalGeral += subtotal;
     listaProdutos += `${index + 1}. ${item.nome} - Qtd: ${item.qtd} - R$ ${subtotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n`;
   });
   const mensagem = `NOVO PEDIDO - ATELIÊ OLIVEIRA\n${listaProdutos}\nTOTAL GERAL: R$ ${totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n\nNOME: ${nome}\nTEL: ${telefone}\nLOCAL DE ENTREGA: A combinar!\nPAGAMENTO: ${pagamento}\nOBS: ${obs}`;
-  {{IE_75}}http://window.open{{/IE_75}}(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`, '_blank');
+  window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`, '_blank');
   carrinho = []; atualizarBadge(); primeiraVezAdicionando = true; fecharPopup();
 }
-function fecharPopup() { {{IE_76}}http://document.getElementById{{/IE_76}}('popup-overlay').classList.remove('active'); }
+function fecharPopup() { document.getElementById('popup-overlay').classList.remove('active'); }
 let isDragging = false, offsetX, offsetY;
-const btnCarrinho = {{IE_77}}http://document.getElementById{{/IE_77}}('btn-carrinho');
-{{IE_78}}http://btnCarrinho.addEventListener{{/IE_78}}('mousedown', e => { isDragging = true; offsetX = {{IE_79}}http://e.clientX{{/IE_79}} - {{IE_80}}http://btnCarrinho.offsetLeft{{/IE_80}}; offsetY = {{IE_81}}http://e.clientY{{/IE_81}} - {{IE_82}}http://btnCarrinho.offsetTop{{/IE_82}}; });
-{{IE_83}}http://document.addEventListener{{/IE_83}}('mousemove', e => { if(isDragging) { {{IE_84}}http://btnCarrinho.style.left{{/IE_84}} = {{IE_85}}http://e.clientX{{/IE_85}} - offsetX + 'px'; {{IE_86}}http://btnCarrinho.style.right{{/IE_86}} = 'auto'; {{IE_87}}http://btnCarrinho.style.bottom{{/IE_87}} = 'auto'; {{IE_88}}http://btnCarrinho.style.top{{/IE_88}} = {{IE_89}}http://e.clientY{{/IE_89}} - offsetY + 'px'; } });
-{{IE_90}}http://document.addEventListener{{/IE_90}}('mouseup', () => { isDragging = false; });
+const btnCarrinho = document.getElementById('btn-carrinho');
+btnCarrinho.addEventListener('mousedown', e => { isDragging = true; offsetX = e.clientX - btnCarrinho.offsetLeft; offsetY = e.clientY - btnCarrinho.offsetTop; });
+document.addEventListener('mousemove', e => { if(isDragging) { btnCarrinho.style.left = e.clientX - offsetX + 'px'; btnCarrinho.style.right = 'auto'; btnCarrinho.style.bottom = 'auto'; btnCarrinho.style.top = e.clientY - offsetY + 'px'; } });
+document.addEventListener('mouseup', () => { isDragging = false; });
 async function carregarProdutos() {
   try {
     const res = await fetch(SHEET_CSV_URL);
-    const texto = await {{IE_91}}http://res.text{{/IE_91}}();
+    const texto = await res.text();
     const dados = parseCSV(texto).filter(p => p['Nome']);
     gerarMenuECategorias(dados);
     preencherProdutos(dados);
   } catch(e) {
-    {{IE_92}}http://console.error{{/IE_92}}(e);
-    {{IE_93}}http://document.getElementById{{/IE_93}}('catalogo-home').innerHTML = '<p style="text-align:center;">Erro ao carregar produtos.</p>';
+    console.error(e);
+    document.getElementById('catalogo-home').innerHTML = '<p style="text-align:center;">Erro ao carregar produtos.</p>';
   }
 }
-function toggleMenu() { {{IE_94}}http://document.getElementById{{/IE_94}}('sidebar').classList.toggle('active'); }
+function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
 function showPage(pageId) {
-  {{IE_95}}http://document.querySelectorAll{{/IE_95}}('.page').forEach(p => {{IE_96}}http://p.classList.remove{{/IE_96}}('active'));
-  {{IE_97}}http://document.getElementById{{/IE_97}}(pageId).classList.add('active');
-  {{IE_98}}http://document.getElementById{{/IE_98}}('sidebar').classList.remove('active');
-  {{IE_99}}http://window.scrollTo{{/IE_99}}(0, 0);
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  document.getElementById('sidebar').classList.remove('active');
+  window.scrollTo(0, 0);
 }
 carregarProdutos();
 </script>
