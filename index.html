@@ -41,12 +41,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .card-back.dica { font-size: 12px; margin-top: 15px; opacity: 0.8; font-style: italic; }
 .img-container { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #eee; position: relative; }
 .card-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.secao-titulo { margin-top: 35px; }
 .titulo-categoria-interna { color: #6b3e26; font-size: 20px; font-weight: 800; margin: 25px 0 10px 10px; text-align: left; border-left: 4px solid #6b3e26; padding-left: 10px; }
 .aviso-oferta { background: #ffeaea; border: 1px solid #e63946; color: #e63946; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 800; text-align: center; }
 .aviso-encomenda { background: #fff3cd; border: 1px solid #6b3e26; color: #6b3e26; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 700; text-align: center; }
 .sobre { background: #fff; text-align: center; border-radius: 15px; padding: 30px 20px; }
 .sobre p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; }
+.sobre-home { background: #fff; text-align: center; border-radius: 15px; padding: 30px 20px; margin-top: 50px; }
+.sobre-home p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; }
 .rodape { background: #222; color: #aaa; text-align: center; padding: 20px; font-size: 12px; }
 .rodape a { color: #25D366; font-weight: 600; text-decoration: none; }
 .loading { text-align: center; color: #6b3e26; font-size: 18px; padding: 40px; }
@@ -113,8 +114,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 <div id="home" class="page active">
   <div class="produtos">
     <div id="secao-oferta" style="display:none">
-      <h2>🔥 OFERTA</h2>
-      <div class="aviso-oferta">⚡ Produtos em oferta por tempo limitado!</div>
+      <h2>🔥 OFERTAS</h2>
+      <div class="aviso-oferta">⚡ Produtos em oferta por tempo limitado! No topo do site!</div>
       <div id="lista-oferta"></div>
     </div>
     <div id="secao-pronta" style="margin-top:30px">
@@ -126,6 +127,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
       <h2>🛒 ENCOMENDA</h2>
       <div class="aviso-encomenda">✨ Faça sua encomenda personalizada!</div>
       <div id="lista-encomenda"></div>
+    </div>
+    <div class="sobre-home">
+      <h2>SOBRE NÓS</h2>
+      <p>Somos um ateliê recente, nascido do carinho e da união de três gerações: mãe, filha e neta. 🌷</p>
+      <p>Aqui, cada peça é feita à mão, com amor, dedicação e um pedacinho da nossa história. O artesanato nos une e nos permite manter viva uma paixão que passa de geração em geração.</p>
+      <p><b>Ateliê Oliveira — onde o amor e a arte atravessam gerações. ✨</b></p>
     </div>
   </div>
 </div>
@@ -200,15 +207,15 @@ function criarCard(produto) {
   const preco = formatarPreco(valorRaw);
   const precoNum = precoParaNum(valorRaw);
   const descricao = getValorCampo(produto, 'Descricao') || produto['Descricao'] || "Toque para ver a descrição";
-  const disponibilidade = (getValorCampo(produto, 'Disponibilidade') || '').toLowerCase();
-  const isOferta = disponibilidade === 'oferta';
+  const disponibilidadeRaw = getValorCampo(produto, 'Disponibilidade') || '';
+  const disponibilidade = disponibilidadeRaw.toLowerCase();
+  const isOferta = disponibilidade.includes('ofert');
   const nomeEsc = (produto['Nome']||'').replace(/'/g, "\\'");
   return `<div class="card-wrapper"><div class="card" onclick="this.classList.toggle('flipped')"><div class="card-face card-front"><div class="img-container">${isOferta? '<span class="badge-oferta">OFERTA</span>' : ''}<img src="${img}" alt="${produto['Nome']}" onerror="this.src='https://via.placeholder.com/260x220?text=Sem+Imagem'"></div><div class="info"><h3>${produto['Nome']}</h3><p class="preco ${isOferta?'oferta':''}">R$ ${preco}</p><button class="btn-pedir" onclick="event.stopPropagation(); adicionarAoCarrinho('${nomeEsc}', ${precoNum})">Adicionar ao Carrinho</button></div></div><div class="card-face card-back"><h3>Descrição</h3><div class="descricao">${descricao}</div><p class="dica">Toque novamente para voltar</p></div></div></div>`;
 }
 function criarPaginaCategoria(id, titulo) {
   return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${titulo.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
 }
-// NOVA FUNÇÃO: agrupa por categoria DENTRO da disponibilidade
 function renderAgrupadoPorCategoria(produtos) {
   if(produtos.length === 0) return '';
   const mapa = new Map();
@@ -224,6 +231,11 @@ function renderAgrupadoPorCategoria(produtos) {
   });
   return html;
 }
+function isOfertaValor(valor) {
+  if(!valor) return false;
+  const v = valor.trim().toLowerCase();
+  return v.includes('ofert');
+}
 function gerarMenuECategorias(dados) {
   const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria') || '').toLowerCase()!== 'banner');
   const abasDisp = [
@@ -235,8 +247,9 @@ function gerarMenuECategorias(dados) {
   dadosSemBanner.forEach(p => {
     const catOriginal = getValorCampo(p, 'Categoria') || '';
     if(!catOriginal) return;
-    if(['pronta entrega','encomenda','oferta','banner'].includes(catOriginal.toLowerCase())) return;
-    const chave = catOriginal.toLowerCase();
+    const lower = catOriginal.toLowerCase();
+    if(lower.includes('ofert') || ['pronta entrega','encomenda','banner'].includes(lower)) return;
+    const chave = lower;
     if(!mapaCategorias.has(chave)) mapaCategorias.set(chave, catOriginal);
   });
   todasCategorias = Array.from(mapaCategorias.values());
@@ -252,34 +265,35 @@ function gerarMenuECategorias(dados) {
 function preencherProdutos(dados) {
   TODOS_PRODUTOS = dados;
   const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria')||'').toLowerCase()!== 'banner');
-  function filtraDisponibilidade(valor) {
+
+  function filtraDisponibilidade(tipo) {
     return dadosSemBanner.filter(p => {
-      const disp = (getValorCampo(p, 'Disponibilidade')||'').toLowerCase().trim();
-      if(disp) return disp === valor;
-      const cat = (getValorCampo(p, 'Categoria')||'').toLowerCase().trim();
-      return cat === valor;
+      const disp = (getValorCampo(p, 'Disponibilidade')||'').trim();
+      if(!disp) return false;
+      const dispLower = disp.toLowerCase();
+      if(tipo === 'oferta') return isOfertaValor(disp);
+      if(tipo === 'pronta entrega') return dispLower === 'pronta entrega' || dispLower.includes('pronta');
+      if(tipo === 'encomenda') return dispLower === 'encomenda';
+      return false;
     });
   }
-  // OFERTA - agrupada por categoria
+
   const listaOferta = filtraDisponibilidade('oferta');
   const divOferta = document.getElementById('lista-oferta');
   const secaoOferta = document.getElementById('secao-oferta');
   if(listaOferta.length > 0){ secaoOferta.style.display='block'; divOferta.innerHTML = renderAgrupadoPorCategoria(listaOferta); }
   else { secaoOferta.style.display='none'; }
 
-  // PRONTA ENTREGA - agrupada por categoria
   const listaPronta = filtraDisponibilidade('pronta entrega');
   const divPronta = document.getElementById('lista-pronta');
   if(listaPronta.length > 0){ divPronta.innerHTML = renderAgrupadoPorCategoria(listaPronta); }
   else { divPronta.innerHTML = `<div class="aviso-vazio"><p>Nenhum produto em pronta entrega</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20encomenda" target="_blank" class="btn-encomenda">Fazer Encomenda</a></div>`; }
 
-  // ENCOMENDA - agrupada por categoria
   const listaEncomenda = filtraDisponibilidade('encomenda');
   const divEnc = document.getElementById('lista-encomenda');
   if(listaEncomenda.length > 0){ divEnc.innerHTML = renderAgrupadoPorCategoria(listaEncomenda); }
   else { divEnc.innerHTML = `<p style="text-align:center; padding:20px;">Nenhum produto em encomenda</p>`; }
 
-  // Páginas individuais do menu (continua igual)
   const paginasDisp = [
     { id: 'pronta-entrega', valor: 'pronta entrega' },
     { id: 'encomenda', valor: 'encomenda' },
