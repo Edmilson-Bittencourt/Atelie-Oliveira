@@ -42,6 +42,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .img-container { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #eee; position: relative; }
 .card-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .secao-titulo { margin-top: 35px; }
+.titulo-categoria-interna { color: #6b3e26; font-size: 20px; font-weight: 800; margin: 25px 0 10px 10px; text-align: left; border-left: 4px solid #6b3e26; padding-left: 10px; }
 .aviso-oferta { background: #ffeaea; border: 1px solid #e63946; color: #e63946; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 800; text-align: center; }
 .aviso-encomenda { background: #fff3cd; border: 1px solid #6b3e26; color: #6b3e26; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 700; text-align: center; }
 .sobre { background: #fff; text-align: center; border-radius: 15px; padding: 30px 20px; }
@@ -114,19 +115,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
     <div id="secao-oferta" style="display:none">
       <h2>🔥 OFERTA</h2>
       <div class="aviso-oferta">⚡ Produtos em oferta por tempo limitado!</div>
-      <div id="lista-oferta" class="catalogo"></div>
+      <div id="lista-oferta"></div>
     </div>
     <div id="secao-pronta" style="margin-top:30px">
       <h2>📦 PRONTA ENTREGA</h2>
-      <p class="dica-card">Clique no card para ver a descrição</p>
-      <div id="lista-pronta" class="catalogo"><div class="loading">Carregando...</div></div>
+      <p class="dica-card">Clique no card para ver a descrição do produto</p>
+      <div id="lista-pronta"><div class="loading">Carregando...</div></div>
     </div>
     <div id="secao-encomenda" style="margin-top:30px">
       <h2>🛒 ENCOMENDA</h2>
       <div class="aviso-encomenda">✨ Faça sua encomenda personalizada!</div>
-      <div id="lista-encomenda" class="catalogo"></div>
+      <div id="lista-encomenda"></div>
     </div>
-    <div id="secoes-categorias"></div>
   </div>
 </div>
 
@@ -208,17 +208,29 @@ function criarCard(produto) {
 function criarPaginaCategoria(id, titulo) {
   return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${titulo.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
 }
+// NOVA FUNÇÃO: agrupa por categoria DENTRO da disponibilidade
+function renderAgrupadoPorCategoria(produtos) {
+  if(produtos.length === 0) return '';
+  const mapa = new Map();
+  produtos.forEach(p => {
+    const catOriginal = getValorCampo(p, 'Categoria') || 'Outros';
+    const chave = catOriginal.toLowerCase();
+    if(!mapa.has(chave)) mapa.set(chave, { nome: catOriginal, lista: [] });
+    mapa.get(chave).lista.push(p);
+  });
+  let html = '';
+  mapa.forEach(grupo => {
+    html += `<div class="titulo-categoria-interna">${grupo.nome}</div><div class="catalogo">${grupo.lista.map(pr=>criarCard(pr)).join('')}</div>`;
+  });
+  return html;
+}
 function gerarMenuECategorias(dados) {
   const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria') || '').toLowerCase()!== 'banner');
-
-  // Abas fixas por DISPONIBILIDADE
   const abasDisp = [
     { id: 'pronta-entrega', titulo: 'Pronta Entrega', valor: 'pronta entrega', emoji: '📦' },
     { id: 'encomenda', titulo: 'Encomenda', valor: 'encomenda', emoji: '🛒' },
     { id: 'oferta', titulo: 'Ofertas', valor: 'oferta', emoji: '🔥' }
   ];
-
-  // Categorias únicas - pega exatamente o que você escreveu, sem duplicar
   const mapaCategorias = new Map();
   dadosSemBanner.forEach(p => {
     const catOriginal = getValorCampo(p, 'Categoria') || '';
@@ -228,14 +240,10 @@ function gerarMenuECategorias(dados) {
     if(!mapaCategorias.has(chave)) mapaCategorias.set(chave, catOriginal);
   });
   todasCategorias = Array.from(mapaCategorias.values());
-
-  // Menu lateral
   let menuHtml = `<a href="#" onclick="showPage('home')">Início</a>`;
   menuHtml += abasDisp.map(a => `<a href="#" onclick="showPage('${a.id}')">${a.emoji} ${a.titulo}</a>`).join('');
   menuHtml += todasCategorias.map(cat => `<a href="#" onclick="showPage('${cat.toLowerCase().replace(/\s+/g,'-')}')">${cat}</a>`).join('');
   document.getElementById('menu-itens').innerHTML = menuHtml;
-
-  // Páginas dinâmicas
   let paginasHtml = '';
   abasDisp.forEach(a => { paginasHtml += criarPaginaCategoria(a.id, a.titulo); });
   todasCategorias.forEach(cat => { paginasHtml += criarPaginaCategoria(cat.toLowerCase().replace(/\s+/g,'-'), cat); });
@@ -244,7 +252,6 @@ function gerarMenuECategorias(dados) {
 function preencherProdutos(dados) {
   TODOS_PRODUTOS = dados;
   const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria')||'').toLowerCase()!== 'banner');
-
   function filtraDisponibilidade(valor) {
     return dadosSemBanner.filter(p => {
       const disp = (getValorCampo(p, 'Disponibilidade')||'').toLowerCase().trim();
@@ -253,36 +260,26 @@ function preencherProdutos(dados) {
       return cat === valor;
     });
   }
-
-  // Preenche seções da HOME
+  // OFERTA - agrupada por categoria
   const listaOferta = filtraDisponibilidade('oferta');
   const divOferta = document.getElementById('lista-oferta');
   const secaoOferta = document.getElementById('secao-oferta');
-  if(listaOferta.length > 0){ secaoOferta.style.display='block'; divOferta.innerHTML = listaOferta.map(p=>criarCard(p)).join(''); }
+  if(listaOferta.length > 0){ secaoOferta.style.display='block'; divOferta.innerHTML = renderAgrupadoPorCategoria(listaOferta); }
   else { secaoOferta.style.display='none'; }
 
+  // PRONTA ENTREGA - agrupada por categoria
   const listaPronta = filtraDisponibilidade('pronta entrega');
   const divPronta = document.getElementById('lista-pronta');
-  if(listaPronta.length > 0){ divPronta.innerHTML = listaPronta.map(p=>criarCard(p)).join(''); }
+  if(listaPronta.length > 0){ divPronta.innerHTML = renderAgrupadoPorCategoria(listaPronta); }
   else { divPronta.innerHTML = `<div class="aviso-vazio"><p>Nenhum produto em pronta entrega</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20encomenda" target="_blank" class="btn-encomenda">Fazer Encomenda</a></div>`; }
 
+  // ENCOMENDA - agrupada por categoria
   const listaEncomenda = filtraDisponibilidade('encomenda');
   const divEnc = document.getElementById('lista-encomenda');
-  if(listaEncomenda.length > 0){ divEnc.innerHTML = listaEncomenda.map(p=>criarCard(p)).join(''); }
+  if(listaEncomenda.length > 0){ divEnc.innerHTML = renderAgrupadoPorCategoria(listaEncomenda); }
   else { divEnc.innerHTML = `<p style="text-align:center; padding:20px;">Nenhum produto em encomenda</p>`; }
 
-  // Seções por categoria na HOME
-  const containerCategorias = document.getElementById('secoes-categorias');
-  let htmlCategoriasHome = '';
-  todasCategorias.forEach(cat => {
-    const produtosCat = dadosSemBanner.filter(p => (getValorCampo(p,'Categoria')||'').toLowerCase() === cat.toLowerCase());
-    if(produtosCat.length === 0) return;
-    const idCat = cat.toLowerCase().replace(/\s+/g,'-');
-    htmlCategoriasHome += `<div style="margin-top:35px"><h2 class="secao-titulo">${cat.toUpperCase()}</h2><div id="home-cat-${idCat}" class="catalogo">${produtosCat.map(p=>criarCard(p)).join('')}</div></div>`;
-  });
-  containerCategorias.innerHTML = htmlCategoriasHome;
-
-  // Preenche páginas individuais (menu)
+  // Páginas individuais do menu (continua igual)
   const paginasDisp = [
     { id: 'pronta-entrega', valor: 'pronta entrega' },
     { id: 'encomenda', valor: 'encomenda' },
@@ -294,14 +291,12 @@ function preencherProdutos(dados) {
     const produtos = filtraDisponibilidade(pag.valor);
     div.innerHTML = produtos.length > 0? produtos.map(p=>criarCard(p)).join('') : `<p style="text-align:center; padding:20px;">Nenhum produto em ${pag.valor}</p>`;
   });
-
   todasCategorias.forEach(cat => {
     const id = cat.toLowerCase().replace(/\s+/g,'-');
     const produtosDaCat = dadosSemBanner.filter(p => (getValorCampo(p,'Categoria')||'').toLowerCase() === cat.toLowerCase());
     const divCat = document.getElementById(`catalogo-${id}`);
     if(divCat){ divCat.innerHTML = produtosDaCat.length > 0? produtosDaCat.map(p=>criarCard(p)).join('') : `<p style="text-align:center;">Nenhum produto em ${cat}</p>`; }
   });
-
   const itemBanner = dados.find(p => (getValorCampo(p,'Categoria')||'').toLowerCase() === 'banner');
   if(itemBanner){
     const imgBanner = converterLinkDrive(getValorCampo(itemBanner,'Link da imagem')||'');
