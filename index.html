@@ -33,8 +33,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .card-front.info { padding: 16px 15px 20px 15px; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; flex: 1; }
 .card-front h3 { font-size: 17px; color: #333; font-weight: 700; margin: 0; min-height: 40px; }
 .preco { font-weight:bold; color:#2a9d8f; font-size:24px; margin: 0; }
-.preco.oferta { color: #e63946; }
-.badge-oferta { position: absolute; top: 10px; left: 10px; background: #e63946; color: #fff; padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; z-index: 2; }
+.badge-oferta { position: absolute; top: 10px; left: 10px; background: #2a9d8f; color: #fff; padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; z-index: 2; }
 .btn-pedir { background: #6b3e26; color: #fff; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: bold; width: 90%; margin: 0 auto; display: block; font-size: 16px; border: none; cursor: pointer; }
 .card-back h3 { font-size: 20px; margin-bottom: 15px; color: #fff; font-weight: 700; }
 .card-back.descricao { font-size: 15px; line-height: 2; white-space: pre-line; text-align: center; overflow-y: auto; flex: 1; }
@@ -42,12 +41,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .img-container { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #eee; position: relative; }
 .card-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .titulo-categoria-interna { color: #6b3e26; font-size: 20px; font-weight: 800; margin: 25px 0 10px 10px; text-align: left; border-left: 4px solid #6b3e26; padding-left: 10px; }
-.aviso-oferta { background: #ffeaea; border: 1px solid #e63946; color: #e63946; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 800; text-align: center; }
 .aviso-encomenda { background: #fff3cd; border: 1px solid #6b3e26; color: #6b3e26; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 700; text-align: center; }
+.aviso-oferta { background: #fff3cd; border: 1px solid #6b3e26; color: #6b3e26; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 700; text-align: center; }
 .sobre { background: #fff; text-align: center; border-radius: 15px; padding: 30px 20px; }
 .sobre p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; }
-.sobre-home { background: #fff; text-align: center; border-radius: 15px; padding: 30px 20px; margin-top: 50px; }
-.sobre-home p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; }
+.sobre-home { background: #fff3cd; border: 1px solid #6b3e26; text-align: center; border-radius: 15px; padding: 30px 20px; margin-top: 50px; }
+.sobre-home h2 { color: #6b3e26; }
+.sobre-home p { font-size: 16px; line-height: 1.8; color: #6b3e26; margin-bottom: 15px; }
 .rodape { background: #222; color: #aaa; text-align: center; padding: 20px; font-size: 12px; }
 .rodape a { color: #25D366; font-weight: 600; text-decoration: none; }
 .loading { text-align: center; color: #6b3e26; font-size: 18px; padding: 40px; }
@@ -115,7 +115,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
   <div class="produtos">
     <div id="secao-oferta" style="display:none">
       <h2>🔥 OFERTAS</h2>
-      <div class="aviso-oferta">⚡ Produtos em oferta por tempo limitado! No topo do site!</div>
+      <div class="aviso-oferta">✨ Produtos em oferta por tempo limitado</div>
       <div id="lista-oferta"></div>
     </div>
     <div id="secao-pronta" style="margin-top:30px">
@@ -211,7 +211,7 @@ function criarCard(produto) {
   const disponibilidade = disponibilidadeRaw.toLowerCase();
   const isOferta = disponibilidade.includes('ofert');
   const nomeEsc = (produto['Nome']||'').replace(/'/g, "\\'");
-  return `<div class="card-wrapper"><div class="card" onclick="this.classList.toggle('flipped')"><div class="card-face card-front"><div class="img-container">${isOferta? '<span class="badge-oferta">OFERTA</span>' : ''}<img src="${img}" alt="${produto['Nome']}" onerror="this.src='https://via.placeholder.com/260x220?text=Sem+Imagem'"></div><div class="info"><h3>${produto['Nome']}</h3><p class="preco ${isOferta?'oferta':''}">R$ ${preco}</p><button class="btn-pedir" onclick="event.stopPropagation(); adicionarAoCarrinho('${nomeEsc}', ${precoNum})">Adicionar ao Carrinho</button></div></div><div class="card-face card-back"><h3>Descrição</h3><div class="descricao">${descricao}</div><p class="dica">Toque novamente para voltar</p></div></div></div>`;
+  return `<div class="card-wrapper"><div class="card" onclick="this.classList.toggle('flipped')"><div class="card-face card-front"><div class="img-container">${isOferta? '<span class="badge-oferta">OFERTA</span>' : ''}<img src="${img}" alt="${produto['Nome']}" onerror="this.src='https://via.placeholder.com/260x220?text=Sem+Imagem'"></div><div class="info"><h3>${produto['Nome']}</h3><p class="preco">R$ ${preco}</p><button class="btn-pedir" onclick="event.stopPropagation(); adicionarAoCarrinho('${nomeEsc}', ${precoNum})">Adicionar ao Carrinho</button></div></div><div class="card-face card-back"><h3>Descrição</h3><div class="descricao">${descricao}</div><p class="dica">Toque novamente para voltar</p></div></div></div>`;
 }
 function criarPaginaCategoria(id, titulo) {
   return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${titulo.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
@@ -265,7 +265,6 @@ function gerarMenuECategorias(dados) {
 function preencherProdutos(dados) {
   TODOS_PRODUTOS = dados;
   const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria')||'').toLowerCase()!== 'banner');
-
   function filtraDisponibilidade(tipo) {
     return dadosSemBanner.filter(p => {
       const disp = (getValorCampo(p, 'Disponibilidade')||'').trim();
@@ -277,23 +276,19 @@ function preencherProdutos(dados) {
       return false;
     });
   }
-
   const listaOferta = filtraDisponibilidade('oferta');
   const divOferta = document.getElementById('lista-oferta');
   const secaoOferta = document.getElementById('secao-oferta');
   if(listaOferta.length > 0){ secaoOferta.style.display='block'; divOferta.innerHTML = renderAgrupadoPorCategoria(listaOferta); }
   else { secaoOferta.style.display='none'; }
-
   const listaPronta = filtraDisponibilidade('pronta entrega');
   const divPronta = document.getElementById('lista-pronta');
   if(listaPronta.length > 0){ divPronta.innerHTML = renderAgrupadoPorCategoria(listaPronta); }
   else { divPronta.innerHTML = `<div class="aviso-vazio"><p>Nenhum produto em pronta entrega</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20encomenda" target="_blank" class="btn-encomenda">Fazer Encomenda</a></div>`; }
-
   const listaEncomenda = filtraDisponibilidade('encomenda');
   const divEnc = document.getElementById('lista-encomenda');
   if(listaEncomenda.length > 0){ divEnc.innerHTML = renderAgrupadoPorCategoria(listaEncomenda); }
   else { divEnc.innerHTML = `<p style="text-align:center; padding:20px;">Nenhum produto em encomenda</p>`; }
-
   const paginasDisp = [
     { id: 'pronta-entrega', valor: 'pronta entrega' },
     { id: 'encomenda', valor: 'encomenda' },
