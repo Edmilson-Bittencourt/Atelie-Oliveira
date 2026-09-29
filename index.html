@@ -15,19 +15,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .btn-icone { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: transform 0.2s; }
 .btn-icone:hover { transform: scale(1.1); }
 .btn-icone-whatsapp { background: #25D366; }
-.sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #6b3e26; transition: 0.3s; padding-top: 100px; z-index: 99; }
+.sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #6b3e26; transition: 0.3s; padding-top: 100px; z-index: 99; overflow-y:auto; }
 .sidebar.active { left: 0; }
 .sidebar a { display: block; padding: 18px 30px; color: #fff; text-decoration: none; font-size: 18px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; background: none; border: none; color: #fff; cursor: pointer; }
 .page { display: none; padding: 40px 20px; max-width: 1400px; margin: 0 auto; }
 .page.active { display: block; }
-.page h2 { color: #6b3e26; text-align: center; font-size: 28px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.page h2 { color: #6b3e26; text-align: center; font-size: 28px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .voltar-btn { background: #6b3e26; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 20px; font-weight: 600; }
 .produtos { background: #f5e9da; border-radius: 15px; padding: 30px 20px; }
-
-/* === RESPONSIVIDADE APLICADA DO PH IMPORTS - ESTILO SHOPEE/MAGALU === */
 .catalogo { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 10px; align-items: stretch; }
-
 .card-wrapper { perspective: 1000px; position: relative; margin-bottom: 25px; }
 .card { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; }
 .card.flipped { transform: rotateY(180deg); }
@@ -36,12 +33,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .card-front.info { padding: 16px 15px 20px 15px; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; flex: 1; }
 .card-front h3 { font-size: 17px; color: #333; font-weight: 700; margin: 0; min-height: 40px; }
 .preco { font-weight:bold; color:#2a9d8f; font-size:24px; margin: 0; }
+.preco.oferta { color: #e63946; }
+.badge-oferta { position: absolute; top: 10px; left: 10px; background: #e63946; color: #fff; padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; z-index: 2; }
 .btn-pedir { background: #6b3e26; color: #fff; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: bold; width: 90%; margin: 0 auto; display: block; font-size: 16px; border: none; cursor: pointer; }
 .card-back h3 { font-size: 20px; margin-bottom: 15px; color: #fff; font-weight: 700; }
 .card-back.descricao { font-size: 15px; line-height: 2; white-space: pre-line; text-align: center; overflow-y: auto; flex: 1; }
 .card-back.dica { font-size: 12px; margin-top: 15px; opacity: 0.8; font-style: italic; }
-.img-container { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #eee; }
+.img-container { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #eee; position: relative; }
 .card-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.secao-titulo { margin-top: 35px; }
+.aviso-oferta { background: #ffeaea; border: 1px solid #e63946; color: #e63946; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 800; text-align: center; }
+.aviso-encomenda { background: #fff3cd; border: 1px solid #6b3e26; color: #6b3e26; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-weight: 700; text-align: center; }
 .sobre { background: #fff; text-align: center; border-radius: 15px; padding: 30px 20px; }
 .sobre p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; }
 .rodape { background: #222; color: #aaa; text-align: center; padding: 20px; font-size: 12px; }
@@ -52,7 +54,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .aviso-vazio p { font-size: 18px; color: #6b3e26; margin-bottom: 20px; font-weight: 600; }
 .btn-encomenda { background: #25D366; color: #fff; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; }
 .btn-carrinho-flutuante { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #6b3e26; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 150; cursor: grab; border: none; }
-.btn-carrinho-flutuante:active { cursor: grabbing; }
 .btn-carrinho-flutuante span { font-size: 28px; }
 .badge-qtd { position: absolute; top: -5px; right: -5px; background: #e63946; color: #fff; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; font-weight: bold; display: none; align-items: center; justify-content: center; }
 .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200; justify-content: center; align-items: center; padding: 20px; }
@@ -76,21 +77,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .btn-botoes { display: flex; gap: 10px; }
 .btn-secundario { background: #ccc; color: #333; }
 .btn-qtd { width:28px;height:28px;border:1px solid #6b3e26;border-radius:6px;background:#fff;cursor:pointer;font-weight:bold;color:#6b3e26; }
-.btn-qtd:hover { background:#6b3e26; color:#fff; }
-
-/* RESPONSIVIDADE IGUAL PH IMPORTS */
 @media(max-width:1100px){.catalogo{grid-template-columns:repeat(3, 1fr);} }
 @media(max-width:768px){.catalogo{grid-template-columns:repeat(2, 1fr);gap:12px;} }
 @media(max-width:600px){
- .catalogo{grid-template-columns:repeat(2, 1fr);gap:10px;padding:5px;}
- .produtos{padding:15px 10px;}
- .card-wrapper{margin-bottom:0;}
- .card-front h3{font-size:0.9rem;min-height:30px;}
- .preco{font-size:18px;}
- .btn-pedir{padding:8px;font-size:0.75rem;width:95%;}
- .img-container{aspect-ratio: 1 / 1;}
- .page h2 { font-size: 22px; }
- .page{padding:15px 8px;}
+.catalogo{grid-template-columns:repeat(2, 1fr);gap:10px;padding:5px;}
+.produtos{padding:15px 10px;}
+.card-wrapper{margin-bottom:0;}
+.card-front h3{font-size:0.9rem;min-height:30px;}
+.preco{font-size:18px;}
+.btn-pedir{padding:8px;font-size:0.75rem;width:95%;}
+.img-container{aspect-ratio: 1 / 1;}
+.page h2 { font-size: 22px; }
+.page{padding:15px 8px;}
 }
 </style>
 </head>
@@ -110,44 +108,68 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
     </a>
   </div>
 </div>
+
 <div id="home" class="page active">
   <div class="produtos">
-    <h2>🌟 PRONTA ENTREGA 🌟</h2>
-    <p class="dica-card">Clique no card para ver a descrição do produto</p>
-    <div id="catalogo-home" class="catalogo"><div class="loading">Carregando...</div></div>
+    <div id="secao-oferta" style="display:none">
+      <h2>🔥 OFERTA</h2>
+      <div class="aviso-oferta">⚡ Produtos em oferta por tempo limitado!</div>
+      <div id="lista-oferta" class="catalogo"></div>
+    </div>
+    <div id="secao-pronta" style="margin-top:30px">
+      <h2>📦 PRONTA ENTREGA</h2>
+      <p class="dica-card">Clique no card para ver a descrição</p>
+      <div id="lista-pronta" class="catalogo"><div class="loading">Carregando...</div></div>
+    </div>
+    <div id="secao-encomenda" style="margin-top:30px">
+      <h2>🛒 ENCOMENDA</h2>
+      <div class="aviso-encomenda">✨ Faça sua encomenda personalizada!</div>
+      <div id="lista-encomenda" class="catalogo"></div>
+    </div>
+    <div id="secoes-categorias"></div>
   </div>
 </div>
+
 <div id="paginas-dinamicas"></div>
+
 <div id="sobre" class="page">
   <button class="voltar-btn" onclick="showPage('home')">← Voltar</button>
   <div class="sobre">
     <h2>SOBRE NÓS</h2>
     <p>Somos um ateliê recente, nascido do carinho e da união de três gerações: mãe, filha e neta. 🌷</p>
-    <p>Aqui, cada peça é feita à mão, com amor, dedicação e um pedacinho da nossa história. O artesanato nos une e nos permite manter viva uma paixão que passa de geração em geração.</p>
+    <p>Aqui, cada peça é feita à mão, com amor, dedicação e um pedacinho da nossa história.</p>
     <p><b>Ateliê Oliveira — onde o amor e a arte atravessam gerações. ✨</b></p>
   </div>
 </div>
+
 <div class="rodape">Desenvolvido por <a href="https://wa.me/5551985108885?text=Ol%C3%A1%20Edmilson%2C%20Vim%20pelo%20site%20do%20Ateli%C3%AA%20Oliveira%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank">Edmilson Bittencourt</a></div>
 <button class="btn-carrinho-flutuante" id="btn-carrinho" onclick="abrirCarrinho()"><span>🛒</span><div class="badge-qtd" id="badge-qtd">0</div></button>
 <div class="popup-overlay" id="popup-overlay" onclick="fecharPopup()"><div class="popup" onclick="event.stopPropagation()"><button class="popup-close" onclick="fecharPopup()">×</button><div id="conteudo-popup"></div></div></div>
+
 <script>
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFGAWC1Fqsq0xYLdolt-yst_tjcVl9M24GVg5KoYw3xIpJHcTLBYlcBo1P166Bur5nKxmMSH47scMS/pub?output=csv";
 const NUMERO_WHATSAPP = "5551995702188";
+let TODOS_PRODUTOS = [];
 let todasCategorias = [];
 let carrinho = [];
 let primeiraVezAdicionando = true;
+
 function parseCSV(text) {
   const rows = []; let row = [], cell = '', inQuotes = false;
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i], next = text[i+1];
-    if (char === '"') { if (inQuotes && next === '"') { cell += '"'; i++; } else { inQuotes =!inQuotes; } }
-    else if (char === ',' &&!inQuotes) { row.push(cell); cell = ''; }
-    else if ((char === '\n' || char === '\r') &&!inQuotes) { if (cell!== '' || row.length > 0) { row.push(cell); rows.push(row); row = []; cell = ''; } if (char === '\r' && next === '\n') i++; }
-    else { cell += char; }
+  for(let i=0;i<text.length;i++){
+    const c=text[i], n=text[i+1];
+    if(c=='"'){ if(inQuotes&&n=='"'){cell+='"'; i++;} else {inQuotes=!inQuotes;} }
+    else if(c==','&&!inQuotes){row.push(cell); cell='';}
+    else if((c=='\n'||c=='\r')&&!inQuotes){ if(cell!==''||row.length>0){row.push(cell); rows.push(row); row=[]; cell='';} if(c=='\r'&&n=='\n')i++; }
+    else {cell+=c;}
   }
-  if (cell!== '' || row.length > 0) { row.push(cell); rows.push(row); }
-  const headers = rows[0];
-  return rows.slice(1).map(r => Object.fromEntries(headers.map((h, i) => [h.trim(), r[i]?.trim() || ''])));
+  if(cell!==''||row.length>0){row.push(cell); rows.push(row);}
+  const headers=rows[0].map(h=>h.trim());
+  return rows.slice(1).map(r=>{let o={}; headers.forEach((h,i)=>o[h]=r[i]?.trim()||''); return o;});
+}
+function getValorCampo(produto, nomeCampo) {
+  const chave = Object.keys(produto).find(k => k.trim().toLowerCase() === nomeCampo.toLowerCase());
+  return chave? produto[chave].trim() : '';
 }
 function converterLinkDrive(link) {
   if(!link) return "";
@@ -166,43 +188,123 @@ function formatarPreco(valor) {
   return num.toLocaleString('pt-BR', {minimumFractionDigits: 2});
 }
 function precoParaNum(valor) {
+  if(!valor) return 0;
   valor = valor.replace(/[^0-9.,]/g, '');
   if(valor.includes('.') && valor.includes(',')) { valor = valor.replace(/\./g, '').replace(',', '.'); }
   else if(valor.includes(',')) { valor = valor.replace(',', '.'); }
   return parseFloat(valor) || 0;
 }
 function criarCard(produto) {
-  const img = converterLinkDrive(produto['Link da imagem']);
-  const preco = formatarPreco(produto['Valor']);
-  const precoNum = precoParaNum(produto['Valor']);
-  const descricao = produto['Descricao'] || "Toque para ver a descrição";
-  return `<div class="card-wrapper"><div class="card" onclick="this.classList.toggle('flipped')"><div class="card-face card-front"><div class="img-container"><img src="${img}" alt="${produto['Nome']}" onerror="this.src='https://via.placeholder.com/260x220?text=Sem+Imagem'"></div><div class="info"><h3>${produto['Nome']}</h3><p class="preco" data-preco="${precoNum}">R$ ${preco}</p><button class="btn-pedir" onclick="event.stopPropagation(); adicionarAoCarrinho('${produto['Nome'].replace(/'/g, "\\'")}', ${precoNum})">Adicionar ao Carrinho</button></div></div><div class="card-face card-back"><h3>Descrição</h3><div class="descricao">${descricao}</div><p class="dica">Toque novamente para voltar</p></div></div></div>`;
+  const img = converterLinkDrive(getValorCampo(produto, 'Link da imagem') || produto['Link da imagem'] || '');
+  const valorRaw = getValorCampo(produto, 'Valor') || produto['Valor'] || '0';
+  const preco = formatarPreco(valorRaw);
+  const precoNum = precoParaNum(valorRaw);
+  const descricao = getValorCampo(produto, 'Descricao') || produto['Descricao'] || "Toque para ver a descrição";
+  const disponibilidade = (getValorCampo(produto, 'Disponibilidade') || '').toLowerCase();
+  const isOferta = disponibilidade === 'oferta';
+  const nomeEsc = (produto['Nome']||'').replace(/'/g, "\\'");
+  return `<div class="card-wrapper"><div class="card" onclick="this.classList.toggle('flipped')"><div class="card-face card-front"><div class="img-container">${isOferta? '<span class="badge-oferta">OFERTA</span>' : ''}<img src="${img}" alt="${produto['Nome']}" onerror="this.src='https://via.placeholder.com/260x220?text=Sem+Imagem'"></div><div class="info"><h3>${produto['Nome']}</h3><p class="preco ${isOferta?'oferta':''}">R$ ${preco}</p><button class="btn-pedir" onclick="event.stopPropagation(); adicionarAoCarrinho('${nomeEsc}', ${precoNum})">Adicionar ao Carrinho</button></div></div><div class="card-face card-back"><h3>Descrição</h3><div class="descricao">${descricao}</div><p class="dica">Toque novamente para voltar</p></div></div></div>`;
 }
-function criarPaginaCategoria(categoria) {
-  const id = categoria.toLowerCase().replace(/\s+/g, '-');
-  return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${categoria.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
+function criarPaginaCategoria(id, titulo) {
+  return `<div id="${id}" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>${titulo.toUpperCase()}</h2><div id="catalogo-${id}" class="catalogo"><div class="loading">Carregando...</div></div></div>`;
 }
 function gerarMenuECategorias(dados) {
-  const dadosSemBanner = dados.filter(p => p['Categoria']?.toLowerCase()!== 'banner');
-  todasCategorias = [...new Set(dadosSemBanner.map(p => p['Categoria']).filter(c => c))];
-  document.getElementById('menu-itens').innerHTML = `<a href="#" onclick="showPage('home')">Início</a>` + todasCategorias.map(cat => `<a href="#" onclick="showPage('${cat.toLowerCase().replace(/\s+/g, '-')}')">${cat}</a>`).join('');
-  document.getElementById('paginas-dinamicas').innerHTML = todasCategorias.map(cat => criarPaginaCategoria(cat)).join('');
+  const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria') || '').toLowerCase()!== 'banner');
+
+  // Abas fixas por DISPONIBILIDADE
+  const abasDisp = [
+    { id: 'pronta-entrega', titulo: 'Pronta Entrega', valor: 'pronta entrega', emoji: '📦' },
+    { id: 'encomenda', titulo: 'Encomenda', valor: 'encomenda', emoji: '🛒' },
+    { id: 'oferta', titulo: 'Ofertas', valor: 'oferta', emoji: '🔥' }
+  ];
+
+  // Categorias únicas - pega exatamente o que você escreveu, sem duplicar
+  const mapaCategorias = new Map();
+  dadosSemBanner.forEach(p => {
+    const catOriginal = getValorCampo(p, 'Categoria') || '';
+    if(!catOriginal) return;
+    if(['pronta entrega','encomenda','oferta','banner'].includes(catOriginal.toLowerCase())) return;
+    const chave = catOriginal.toLowerCase();
+    if(!mapaCategorias.has(chave)) mapaCategorias.set(chave, catOriginal);
+  });
+  todasCategorias = Array.from(mapaCategorias.values());
+
+  // Menu lateral
+  let menuHtml = `<a href="#" onclick="showPage('home')">Início</a>`;
+  menuHtml += abasDisp.map(a => `<a href="#" onclick="showPage('${a.id}')">${a.emoji} ${a.titulo}</a>`).join('');
+  menuHtml += todasCategorias.map(cat => `<a href="#" onclick="showPage('${cat.toLowerCase().replace(/\s+/g,'-')}')">${cat}</a>`).join('');
+  document.getElementById('menu-itens').innerHTML = menuHtml;
+
+  // Páginas dinâmicas
+  let paginasHtml = '';
+  abasDisp.forEach(a => { paginasHtml += criarPaginaCategoria(a.id, a.titulo); });
+  todasCategorias.forEach(cat => { paginasHtml += criarPaginaCategoria(cat.toLowerCase().replace(/\s+/g,'-'), cat); });
+  document.getElementById('paginas-dinamicas').innerHTML = paginasHtml;
 }
 function preencherProdutos(dados) {
-  const dadosSemBanner = dados.filter(p => p['Categoria']?.toLowerCase()!== 'banner');
-  const prontaEntrega = dadosSemBanner.filter(p => p['Categoria']?.toLowerCase() === 'pronta entrega');
-  const divHome = document.getElementById('catalogo-home');
-  if(prontaEntrega.length > 0) { divHome.innerHTML = prontaEntrega.map(p => criarCard(p)).join(''); }
-  else { divHome.innerHTML = `<div class="aviso-vazio"><p>No momento não temos produtos a pronta entrega, Clique no botão e faça sua encomenda!</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-encomenda">Encomendas</a></div>`; }
+  TODOS_PRODUTOS = dados;
+  const dadosSemBanner = dados.filter(p => (getValorCampo(p, 'Categoria')||'').toLowerCase()!== 'banner');
+
+  function filtraDisponibilidade(valor) {
+    return dadosSemBanner.filter(p => {
+      const disp = (getValorCampo(p, 'Disponibilidade')||'').toLowerCase().trim();
+      if(disp) return disp === valor;
+      const cat = (getValorCampo(p, 'Categoria')||'').toLowerCase().trim();
+      return cat === valor;
+    });
+  }
+
+  // Preenche seções da HOME
+  const listaOferta = filtraDisponibilidade('oferta');
+  const divOferta = document.getElementById('lista-oferta');
+  const secaoOferta = document.getElementById('secao-oferta');
+  if(listaOferta.length > 0){ secaoOferta.style.display='block'; divOferta.innerHTML = listaOferta.map(p=>criarCard(p)).join(''); }
+  else { secaoOferta.style.display='none'; }
+
+  const listaPronta = filtraDisponibilidade('pronta entrega');
+  const divPronta = document.getElementById('lista-pronta');
+  if(listaPronta.length > 0){ divPronta.innerHTML = listaPronta.map(p=>criarCard(p)).join(''); }
+  else { divPronta.innerHTML = `<div class="aviso-vazio"><p>Nenhum produto em pronta entrega</p><a href="https://wa.me/${NUMERO_WHATSAPP}?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20encomenda" target="_blank" class="btn-encomenda">Fazer Encomenda</a></div>`; }
+
+  const listaEncomenda = filtraDisponibilidade('encomenda');
+  const divEnc = document.getElementById('lista-encomenda');
+  if(listaEncomenda.length > 0){ divEnc.innerHTML = listaEncomenda.map(p=>criarCard(p)).join(''); }
+  else { divEnc.innerHTML = `<p style="text-align:center; padding:20px;">Nenhum produto em encomenda</p>`; }
+
+  // Seções por categoria na HOME
+  const containerCategorias = document.getElementById('secoes-categorias');
+  let htmlCategoriasHome = '';
   todasCategorias.forEach(cat => {
-    const id = cat.toLowerCase().replace(/\s+/g, '-');
-    const produtosDaCat = dadosSemBanner.filter(p => p['Categoria']?.toLowerCase() === cat.toLowerCase());
-    const divCat = document.getElementById(`catalogo-${id}`);
-    if(divCat) { divCat.innerHTML = produtosDaCat.length > 0? produtosDaCat.map(p => criarCard(p)).join('') : `<p style="text-align:center; padding:20px;">Nenhum produto em ${cat}</p>`; }
+    const produtosCat = dadosSemBanner.filter(p => (getValorCampo(p,'Categoria')||'').toLowerCase() === cat.toLowerCase());
+    if(produtosCat.length === 0) return;
+    const idCat = cat.toLowerCase().replace(/\s+/g,'-');
+    htmlCategoriasHome += `<div style="margin-top:35px"><h2 class="secao-titulo">${cat.toUpperCase()}</h2><div id="home-cat-${idCat}" class="catalogo">${produtosCat.map(p=>criarCard(p)).join('')}</div></div>`;
   });
-  const itemBanner = dados.find(p => p['Categoria']?.toLowerCase() === 'banner');
-  if(itemBanner && itemBanner['Link da imagem']) {
-    const imgBanner = converterLinkDrive(itemBanner['Link da imagem']);
+  containerCategorias.innerHTML = htmlCategoriasHome;
+
+  // Preenche páginas individuais (menu)
+  const paginasDisp = [
+    { id: 'pronta-entrega', valor: 'pronta entrega' },
+    { id: 'encomenda', valor: 'encomenda' },
+    { id: 'oferta', valor: 'oferta' }
+  ];
+  paginasDisp.forEach(pag => {
+    const div = document.getElementById(`catalogo-${pag.id}`);
+    if(!div) return;
+    const produtos = filtraDisponibilidade(pag.valor);
+    div.innerHTML = produtos.length > 0? produtos.map(p=>criarCard(p)).join('') : `<p style="text-align:center; padding:20px;">Nenhum produto em ${pag.valor}</p>`;
+  });
+
+  todasCategorias.forEach(cat => {
+    const id = cat.toLowerCase().replace(/\s+/g,'-');
+    const produtosDaCat = dadosSemBanner.filter(p => (getValorCampo(p,'Categoria')||'').toLowerCase() === cat.toLowerCase());
+    const divCat = document.getElementById(`catalogo-${id}`);
+    if(divCat){ divCat.innerHTML = produtosDaCat.length > 0? produtosDaCat.map(p=>criarCard(p)).join('') : `<p style="text-align:center;">Nenhum produto em ${cat}</p>`; }
+  });
+
+  const itemBanner = dados.find(p => (getValorCampo(p,'Categoria')||'').toLowerCase() === 'banner');
+  if(itemBanner){
+    const imgBanner = converterLinkDrive(getValorCampo(itemBanner,'Link da imagem')||'');
     if(imgBanner) document.getElementById('img-banner').src = imgBanner;
   }
 }
@@ -257,11 +359,6 @@ function enviarPedido(e) {
   carrinho = []; atualizarBadge(); primeiraVezAdicionando = true; fecharPopup();
 }
 function fecharPopup() { document.getElementById('popup-overlay').classList.remove('active'); }
-let isDragging = false, offsetX, offsetY;
-const btnCarrinho = document.getElementById('btn-carrinho');
-btnCarrinho.addEventListener('mousedown', e => { isDragging = true; offsetX = e.clientX - btnCarrinho.offsetLeft; offsetY = e.clientY - btnCarrinho.offsetTop; });
-document.addEventListener('mousemove', e => { if(isDragging) { btnCarrinho.style.left = e.clientX - offsetX + 'px'; btnCarrinho.style.right = 'auto'; btnCarrinho.style.bottom = 'auto'; btnCarrinho.style.top = e.clientY - offsetY + 'px'; } });
-document.addEventListener('mouseup', () => { isDragging = false; });
 async function carregarProdutos() {
   try {
     const res = await fetch(SHEET_CSV_URL);
@@ -271,7 +368,7 @@ async function carregarProdutos() {
     preencherProdutos(dados);
   } catch(e) {
     console.error(e);
-    document.getElementById('catalogo-home').innerHTML = '<p style="text-align:center;">Erro ao carregar produtos.</p>';
+    document.getElementById('lista-pronta').innerHTML = '<p style="text-align:center;">Erro ao carregar produtos.</p>';
   }
 }
 function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
